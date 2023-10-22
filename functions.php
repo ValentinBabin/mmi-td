@@ -118,8 +118,13 @@ add_action( 'after_setup_theme', 'mmi_td_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function mmi_td_scripts() {
+    // style css
 	wp_enqueue_style( 'mmi-td-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_enqueue_style( 'tailwind', 'https://cdn.tailwindcss.com', array(), _S_VERSION );
+	wp_enqueue_style( 'custom-style', get_template_directory_uri().'/output/output.css');
+
+    // style js
+	wp_enqueue_style( 'custom-script', get_template_directory_uri().'/output/output.js');
 }
 add_action( 'wp_enqueue_scripts', 'mmi_td_scripts' );
 

@@ -35,17 +35,17 @@ get_header();
                 <?php mmi_td_post_thumbnail(); ?>
 
                 <div class="entry-content">
-                    <p>Durée : <?php echo get_field('duration');?> minutes</p>
-                    <p>Difficulté : <?php echo get_field('difficulty');?>/5</p>
+                    <p>Durée : <?php echo get_field('duration'); ?> minutes</p>
+                    <p>Difficulté : <?php echo get_field('difficulty'); ?>/5</p>
 
                     <div class="ingredients">
                         <p>Ingrédients :</p>
-                        <?php echo get_field('ingredients');?>
+                        <?php echo get_field('ingredients'); ?>
                     </div>
 
                     <div class="ingredients">
                         <p>Ustensiles :</p>
-                        <?php echo get_field('ustensiles');?>
+                        <?php echo get_field('ustensiles'); ?>
                     </div>
                     
                     Etapes: <?php the_content(); ?>

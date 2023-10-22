@@ -27,7 +27,7 @@
         {
             "key": "field_653502bede40f",
             "label": "Difficulté recette",
-            "name": "diffculty",
+            "name": "difficulty",
             "aria-label": "",
             "type": "range",
             "instructions": "Difficulté de 1 à 5",
@@ -104,5 +104,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1697973305
+    "modified": 1697974077
 }

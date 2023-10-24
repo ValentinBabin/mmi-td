@@ -45,6 +45,10 @@
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/toto.svg" alt="">
+
+        <a href="<?php echo home_url('product-category/uncategorized/'); ?>">Lien 1</a>
+
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="header-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'mmi-td' ); ?></button>
 			<?php

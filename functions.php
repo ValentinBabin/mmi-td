@@ -1,6 +1,6 @@
 <?php
 
-show_admin_bar(true);
+show_admin_bar(false);
 add_theme_support( 'post-thumbnails' );
 
 /** STYLES */
@@ -19,21 +19,6 @@ function init_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'init_scripts' );
 
-
-/** ACF */
-function acf_json_save_groups($path) {
-	return get_stylesheet_directory() . '/inc';
-}
-add_filter( 'acf/settings/save_json', 'acf_json_save_groups' );
-
-function acf_json_load_point($paths) {
-	unset($paths[0]);
-	$paths[] = get_stylesheet_directory() . '/inc';
-	return $paths;
-}
-add_filter('acf/settings/load_json', 'acf_json_load_point');
-
-
 /** MENUS */
 function register_custom_menus() {
     register_nav_menus(
@@ -47,12 +32,12 @@ function register_custom_menus() {
 add_action('init', 'register_custom_menus');
 
 // Register Custom Post Type
-function init_staff_custom_post_type() {
+function init_project_custom_post_type() {
 
 	$labels = array(
-		'name'                  => 'Membres',
-		'singular_name'         => 'Membre',
-		'menu_name'             => 'Membres',
+		'name'                  => 'Projets',
+		'singular_name'         => 'Projet',
+		'menu_name'             => 'Projets',
 		'name_admin_bar'        => 'Post Type',
 		'archives'              => 'Item Archives',
 		'attributes'            => 'Item Attributes',
@@ -79,13 +64,13 @@ function init_staff_custom_post_type() {
 		'filter_items_list'     => 'Filter items list',
 	);
     $rewrite = array(
-		'slug'                  => 'teams',
+		'slug'                  => 'projets',
 		'with_front'            => true,
 		'pages'                 => true,
 		'feeds'                 => true,
 	);
 	$args = array(
-		'label'                 => 'Membre',
+		'label'                 => 'Projet',
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes' ),
 		'hierarchical'          => false,
@@ -103,8 +88,46 @@ function init_staff_custom_post_type() {
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
 	);
-	register_post_type( 'staff', $args );
+	register_post_type( 'project', $args );
 
 }
-add_action( 'init', 'init_staff_custom_post_type', 0 );
-  
+add_action( 'init', 'init_project_custom_post_type', 0 );
+
+// Register Custom Taxonomy
+function custom_taxonomy_project_type() {
+
+	$labels = array(
+		'name'                       => 'Types',
+		'singular_name'              => 'Type',
+		'menu_name'                  => 'Types',
+		'all_items'                  => 'All Items',
+		'parent_item'                => 'Parent Item',
+		'parent_item_colon'          => 'Parent Item:',
+		'new_item_name'              => 'New Item Name',
+		'add_new_item'               => 'Add New Item',
+		'edit_item'                  => 'Edit Item',
+		'update_item'                => 'Update Item',
+		'view_item'                  => 'View Item',
+		'separate_items_with_commas' => 'Separate items with commas',
+		'add_or_remove_items'        => 'Add or remove items',
+		'choose_from_most_used'      => 'Choose from the most used',
+		'popular_items'              => 'Popular Items',
+		'search_items'               => 'Search Items',
+		'not_found'                  => 'Not Found',
+		'no_terms'                   => 'No items',
+		'items_list'                 => 'Items list',
+		'items_list_navigation'      => 'Items list navigation',
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+	);
+	register_taxonomy( 'type', array( 'project' ), $args );
+
+}
+add_action( 'init', 'custom_taxonomy_project_type', 0 );

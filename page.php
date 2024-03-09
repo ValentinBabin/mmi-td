@@ -8,8 +8,6 @@
         <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 lg:mb-6 not-format">
                 <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"><?php echo get_the_title(); ?></h1>
-                
-                <p class="text-base text-gray-500 dark:text-gray-400"><?php echo get_the_author(); ?>, <?php echo get_the_date('Y-m-d H:i:s'); ?></p>
             </header>
             <main>
                 <?php echo get_the_content(); ?>
